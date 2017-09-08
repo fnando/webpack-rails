@@ -37,7 +37,7 @@ module.exports = merge(shared, {
   ],
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,

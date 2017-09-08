@@ -25,8 +25,8 @@ module.exports = {
   entry: resolveEntries(),
   resolve: {
     modules: [
-      path.resolve(cwd, "app/frontend"),
-      path.resolve(cwd, "node_modules")
+      "node_modules",
+      path.resolve(cwd, "app/frontend")
     ],
     extensions: [".js", ".jsx"]
   }
