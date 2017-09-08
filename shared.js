@@ -24,7 +24,10 @@ module.exports = {
   target: "web",
   entry: resolveEntries(),
   resolve: {
-    modules: [path.resolve(cwd, "app/frontend"), "node_modules"],
+    modules: [
+      path.resolve(cwd, "app/frontend"),
+      path.resolve(cwd, "node_modules")
+    ],
     extensions: [".js", ".jsx"]
   }
 };
