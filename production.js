@@ -48,7 +48,7 @@ module.exports = merge(shared, {
       },
 
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: ExtractTextPlugin.extract({
           use: [
             "css-loader",

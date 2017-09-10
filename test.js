@@ -34,7 +34,7 @@ module.exports = merge(shared, {
       },
 
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: "null-loader"
       },
 
