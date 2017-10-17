@@ -61,7 +61,7 @@ module.exports = merge(shared, {
       },
 
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
         use: "file-loader?name=[name].[ext]"
       }
     ]
