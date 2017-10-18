@@ -27,7 +27,7 @@ module.exports = merge(shared, {
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(true),
-    new webpack.optimize.UglifyJsPlugin({output: {comments: false}}),
+    new webpack.optimize.UglifyJsPlugin({sourceMap: true, output: {comments: false}}),
     new ExtractTextPlugin({
       filename: "[name]-[hash].css",
       disable: false,
