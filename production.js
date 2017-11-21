@@ -6,6 +6,7 @@ const Manifest = require("webpack-assets-manifest");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const Clean = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const shared = require("./shared");
 
@@ -27,7 +28,7 @@ module.exports = merge(shared, {
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(true),
-    new webpack.optimize.UglifyJsPlugin({sourceMap: true, output: {comments: false}}),
+    new UglifyJSPlugin({sourceMap: true}),
     new ExtractTextPlugin({
       filename: "[name]-[hash].css",
       disable: false,
