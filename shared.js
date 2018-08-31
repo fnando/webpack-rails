@@ -12,7 +12,7 @@ function entries(buffer, [key, value]) {
 }
 
 function resolveEntries() {
-  const entriesPath = process.env.WEBPACK_ENTRIES_PATH || "app/frontend/*.js";
+  const entriesPath = process.env.WEBPACK_ENTRIES_PATH || "app/frontend/*.{js,jsx}";
 
   return glob
     .sync(path.join(cwd, entriesPath))
