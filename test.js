@@ -13,6 +13,7 @@ module.exports = merge(shared, {
   },
 
   devtool: "eval-source-map",
+  mode: "development",
 
   plugins: [
     new webpack.DefinePlugin({

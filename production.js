@@ -3,7 +3,7 @@ const path = require("path");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const Manifest = require("webpack-assets-manifest");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Clean = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
@@ -18,6 +18,7 @@ module.exports = merge(shared, {
   },
 
   devtool: "source-map",
+  mode: "development",
   bail: true,
 
   plugins: [
@@ -29,10 +30,9 @@ module.exports = merge(shared, {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(true),
     new UglifyJSPlugin({sourceMap: true}),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: "[name]-[hash].css",
-      disable: false,
-      allChunks: true
+      chunkFilename: "[id].[hash].css"
     }),
     new Manifest({output: "manifest.json", writeToDisk: true, publicPath: true})
   ],
@@ -50,20 +50,19 @@ module.exports = merge(shared, {
 
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            "css-loader",
-            {
-              loader: "postcss-loader",
-              options: {
-                sourceMap: true,
-                plugins: () => [autoprefixer({browsers: ["last 2 versions"]})]
-              }
-            },
-            "resolve-url-loader",
-            "sass-loader?outputStyle=compressed"
-          ]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              sourceMap: true,
+              plugins: () => [autoprefixer({browsers: ["last 2 versions"]})]
+            }
+          },
+          "resolve-url-loader",
+          "sass-loader?outputStyle=compressed"
+        ]
       },
 
       {

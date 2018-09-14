@@ -4,7 +4,7 @@ const merge = require("webpack-merge");
 const webpack = require("webpack");
 const Manifest = require("webpack-assets-manifest");
 const autoprefixer = require("autoprefixer");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const shared = require("./shared");
 
@@ -16,6 +16,7 @@ module.exports = merge(shared, {
   },
 
   devtool: "eval-source-map",
+  mode: "development",
 
   plugins: [
     new webpack.DefinePlugin({
@@ -23,10 +24,9 @@ module.exports = merge(shared, {
         NODE_ENV: JSON.stringify("development")
       }
     }),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: "[name].css",
-      disable: false,
-      allChunks: true
+      chunkFilename: "[id].css"
     }),
     new Manifest({output: "manifest.json", writeToDisk: true, publicPath: true})
   ],
@@ -44,20 +44,19 @@ module.exports = merge(shared, {
 
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            "css-loader",
-            {
-              loader: "postcss-loader",
-              options: {
-                sourceMap: true,
-                plugins: () => [autoprefixer({browsers: ["last 2 versions"]})]
-              }
-            },
-            "resolve-url-loader",
-            "sass-loader?outputStyle=compressed&sourceMap=true"
-          ]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              sourceMap: true,
+              plugins: () => [autoprefixer({browsers: ["last 2 versions"]})]
+            }
+          },
+          "resolve-url-loader",
+          "sass-loader?outputStyle=compressed&sourceMap=true"
+        ]
       },
 
       {
