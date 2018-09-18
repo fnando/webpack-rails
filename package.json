@@ -1,6 +1,6 @@
 {
   "name": "webpack-rails",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Webpack configuration that just works for Rails apps.",
   "main": "index.js",
   "scripts": {
