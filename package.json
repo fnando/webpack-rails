@@ -13,6 +13,7 @@
     "@babel/plugin-proposal-class-properties": "7.0.x",
     "@babel/plugin-proposal-function-bind": "7.0.x",
     "@babel/plugin-transform-runtime": "7.1.x",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.x",
     "@babel/preset-env": "7.0.x",
     "@babel/preset-react": "7.0.x",
     "@babel/runtime": "7.0.x",
