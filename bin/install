@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -e
+
+self=$(realpath "$0")
+bin=$(dirname "$self")
+templates=$(realpath "$bin/../templates")
+
+echo $templates
+
+echo "=> webpack-rails install process"
+
+echo -n "=> copying .storybook... "
+mkdir -p .storybook
+cp $templates/.storybook/* .storybook/
+echo "OK"
+
+echo -n "=> copying test/stories... "
+mkdir -p test/stories
+cp $templates/test/stories/* test/stories/
+echo "OK"
+
+echo -n "=> copying webpack config... "
+mkdir -p config/webpack
+cp $templates/config/webpack/* config/webpack/
+echo "OK"
+
+echo -n "=> copying babel config... "
+cp $templates/.babelrc .babelrc
+echo "OK"
+
+echo "=> done!"

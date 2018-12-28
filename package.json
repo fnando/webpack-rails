@@ -6,17 +6,24 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin" : {
+    "webpack-rails-install" : "./bin/install"
+  },
   "author": "Nando Vieira",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "7.0.x",
     "@babel/plugin-proposal-class-properties": "7.0.x",
     "@babel/plugin-proposal-function-bind": "7.0.x",
-    "@babel/plugin-transform-runtime": "7.1.x",
     "@babel/plugin-proposal-object-rest-spread": "7.0.x",
+    "@babel/plugin-transform-runtime": "7.1.x",
     "@babel/preset-env": "7.0.x",
     "@babel/preset-react": "7.0.x",
     "@babel/runtime": "7.0.x",
+    "@storybook/addon-actions": "4.x",
+    "@storybook/addon-links": "4.x",
+    "@storybook/cli": "4.x",
+    "@storybook/react": "4.x",
     "autoprefixer": "9.1.x",
     "babel-eslint": "9.0.x",
     "babel-loader": "8.0.x",
@@ -26,9 +33,9 @@
     "eslint-loader": "2.1.x",
     "eslint-plugin-babel": "5.2.x",
     "eslint-plugin-react": "7.11.x",
-    "mini-css-extract-plugin": "0.4.x",
     "file-loader": "2.0.x",
     "glob": "7.1.x",
+    "mini-css-extract-plugin": "0.4.x",
     "node-sass": "4.9.x",
     "null-loader": "0.1.x",
     "postcss-loader": "3.0.x",
@@ -38,8 +45,8 @@
     "sass-loader": "7.1.x",
     "uglifyjs-webpack-plugin": "2.0.x",
     "webpack": "4.19.x",
-    "webpack-cli": "3.1.x",
     "webpack-assets-manifest": "3.0.x",
+    "webpack-cli": "3.1.x",
     "webpack-merge": "4.1.x"
   }
 }
