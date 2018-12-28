@@ -23,6 +23,9 @@ function resolveEntries() {
 module.exports = {
   target: "web",
   entry: resolveEntries(),
+  node: {
+    fs: "empty"
+  },
   resolve: {
     modules: [
       "node_modules",

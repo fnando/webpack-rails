@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -e
+
+webpack --watch --config ./config/webpack/development.js

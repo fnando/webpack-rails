@@ -6,10 +6,6 @@ self=$(realpath "$0")
 bin=$(dirname "$self")
 templates=$(realpath "$bin/../templates")
 
-echo $templates
-
-echo "=> webpack-rails install process"
-
 echo -n "=> copying .storybook... "
 mkdir -p .storybook
 cp $templates/.storybook/* .storybook/
@@ -29,4 +25,14 @@ echo -n "=> copying babel config... "
 cp $templates/.babelrc .babelrc
 echo "OK"
 
-echo "=> done!"
+echo -n "=> copying eslint config... "
+cp $templates/.eslintrc* .
+echo "OK"
+
+echo -n "=> copying jest files... "
+mkdir -p test/javascript
+cp $templates/jest.config.js .
+cp $templates/test/javascript/* test/javascript/
+echo "OK"
+
+echo "=> Done!"

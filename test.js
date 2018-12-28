@@ -30,7 +30,7 @@ module.exports = merge(shared, {
         exclude: /node_modules/,
         use: [
           "babel-loader",
-          "eslint-loader?configFile=.eslintrc"
+          "eslint-loader?configFile=.eslintrc.test"
         ]
       },
 
