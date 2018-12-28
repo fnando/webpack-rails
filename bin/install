@@ -29,4 +29,10 @@ echo -n "=> copying babel config... "
 cp $templates/.babelrc .babelrc
 echo "OK"
 
+echo -n "=> copying jest files... "
+mkdir -p test/javascript
+cp $templates/jest.config.js .
+cp $templates/test/javascript/* test/javascript/
+echo "OK"
+
 echo "=> done!"
