@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -e
 
-webpack --config ./config/webpack/production.js
+webpack --config ./config/webpack/production.js $@

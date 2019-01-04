@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -e
 
-start-storybook -p ${PORT:-7777}
+start-storybook -p ${PORT:-7777} $@
