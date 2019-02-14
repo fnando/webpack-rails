@@ -2,6 +2,10 @@
   "extends": [
     ".eslintrc"
   ],
+  "rules": {
+    "no-console": "off",
+    "no-debugger": "off"
+  },
   "globals": {
     "module": true
   }
