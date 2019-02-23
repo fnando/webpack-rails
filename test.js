@@ -4,6 +4,7 @@ const merge = require("webpack-merge");
 const webpack = require("webpack");
 
 const shared = require("./shared");
+const handlebars = require("./webpack/handlebars");
 
 module.exports = merge(shared, {
   output: {
@@ -42,7 +43,9 @@ module.exports = merge(shared, {
       {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ico)$/,
         use: "null-loader"
-      }
+      },
+
+      handlebars()
     ]
   }
 });

@@ -7,6 +7,7 @@ const autoprefixer = require("autoprefixer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const shared = require("./shared");
+const handlebars = require("./webpack/handlebars");
 
 module.exports = merge(shared, {
   output: {
@@ -62,7 +63,9 @@ module.exports = merge(shared, {
       {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ico)$/,
         use: "file-loader?name=[name].[ext]"
-      }
+      },
+
+      handlebars()
     ]
   }
 });
