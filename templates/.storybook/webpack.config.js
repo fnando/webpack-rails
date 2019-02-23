@@ -1,1 +1,1 @@
-module.exports = require("../config/webpack/test");
+module.exports = require("webpack-rails/storybook");
