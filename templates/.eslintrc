@@ -78,7 +78,11 @@
     "prefer-rest-params": "error",
     "prefer-spread": "error",
     "semi": ["error", "always"],
-    "space-before-function-paren": ["error", "never"],
+    "space-before-function-paren": ["error", {
+      "anonymous": "never",
+      "asyncArrow": "always",
+      "named": "never"
+    }],
     "space-in-parens": ["error", "never"],
     "spaced-comment": ["error", "always"],
     "template-curly-spacing": ["error", "never"]
