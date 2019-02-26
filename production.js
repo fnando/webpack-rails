@@ -5,22 +5,17 @@ const webpack = require("webpack");
 const Manifest = require("webpack-assets-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Clean = require("clean-webpack-plugin");
-const autoprefixer = require("autoprefixer");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const shared = require("./shared");
-const handlebars = require("./webpack/handlebars");
+const handlebarsRule = require("./webpack/handlebars_rule");
+const cssRule = require("./webpack/css_rule");
+const imageRule = require("./webpack/image_rule");
 
 module.exports = merge(shared, {
-  output: {
-    path: path.resolve(process.cwd(), "public/dist/"),
-    filename: "[name]-[hash].js",
-    publicPath: "/dist/"
-  },
-
   devtool: "source-map",
-  mode: "development",
   bail: true,
+  mode: "production",
 
   plugins: [
     new Clean(["public/dist"], {root: process.cwd()}),
@@ -49,29 +44,9 @@ module.exports = merge(shared, {
         ]
       },
 
-      {
-        test: /\.s?css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              sourceMap: true,
-              plugins: () => [autoprefixer({browsers: ["last 2 versions"]})]
-            }
-          },
-          "resolve-url-loader",
-          "sass-loader?outputStyle=compressed"
-        ]
-      },
-
-      {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ico)$/,
-        use: "file-loader?name=[name]-[hash:20].[ext]"
-      },
-
-      handlebars()
+      cssRule(),
+      imageRule(),
+      handlebarsRule()
     ]
   }
 });

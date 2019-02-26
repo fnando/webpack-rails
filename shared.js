@@ -32,5 +32,10 @@ module.exports = {
       path.resolve(cwd, "app/frontend")
     ],
     extensions: [".js", ".jsx"]
+  },
+  output: {
+    path: path.resolve(process.cwd(), "public/dist/"),
+    filename: "[name]-[hash].js",
+    publicPath: "/dist/"
   }
 };

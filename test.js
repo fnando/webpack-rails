@@ -4,17 +4,11 @@ const merge = require("webpack-merge");
 const webpack = require("webpack");
 
 const shared = require("./shared");
-const handlebars = require("./webpack/handlebars");
+const handlebarsRule = require("./webpack/handlebars_rule");
 
 module.exports = merge(shared, {
-  output: {
-    path: path.resolve(process.cwd(), "public/dist/"),
-    filename: "[name].js",
-    publicPath: "/dist/"
-  },
-
-  devtool: "eval-source-map",
   mode: "development",
+  devtool: "eval-source-map",
 
   plugins: [
     new webpack.DefinePlugin({
@@ -45,7 +39,7 @@ module.exports = merge(shared, {
         use: "null-loader"
       },
 
-      handlebars()
+      handlebarsRule()
     ]
   }
 });

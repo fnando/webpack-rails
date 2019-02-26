@@ -3,21 +3,16 @@ const path = require("path");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const Manifest = require("webpack-assets-manifest");
-const autoprefixer = require("autoprefixer");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const shared = require("./shared");
-const handlebars = require("./webpack/handlebars");
+const handlebarsRule = require("./webpack/handlebars_rule");
+const cssRule = require("./webpack/css_rule");
+const imageRule = require("./webpack/image_rule");
 
 module.exports = merge(shared, {
-  output: {
-    path: path.resolve(process.cwd(), "public/dist/"),
-    filename: "[name].js",
-    publicPath: "/dist/"
-  },
-
-  devtool: "eval-source-map",
   mode: "development",
+  devtool: "eval-source-map",
 
   plugins: [
     new webpack.DefinePlugin({
@@ -43,29 +38,9 @@ module.exports = merge(shared, {
         ]
       },
 
-      {
-        test: /\.s?css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              sourceMap: true,
-              plugins: () => [autoprefixer({browsers: ["last 2 versions"]})]
-            }
-          },
-          "resolve-url-loader",
-          "sass-loader?outputStyle=compressed&sourceMap=true"
-        ]
-      },
-
-      {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ico)$/,
-        use: "file-loader?name=[name].[ext]"
-      },
-
-      handlebars()
+      cssRule(),
+      imageRule(),
+      handlebarsRule()
     ]
   }
 });
