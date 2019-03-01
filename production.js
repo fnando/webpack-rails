@@ -9,8 +9,9 @@ const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const shared = require("./shared");
 const handlebarsRule = require("./webpack/handlebars_rule");
+const jsRule = require("./webpack/js_rule");
 const cssRule = require("./webpack/css_rule");
-const imageRule = require("./webpack/image_rule");
+const filesRule = require("./webpack/files_rule");
 
 module.exports = merge(shared, {
   devtool: "source-map",
@@ -35,17 +36,16 @@ module.exports = merge(shared, {
 
   module: {
     rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: [
-          "babel-loader",
-          "eslint-loader?failOnWarning=true&failOnError=true"
-        ]
-      },
+      jsRule({
+        eslint: {
+          configFile: ".eslintrc",
+          failOnWarning: true,
+          failOnError: true
+        }
+      }),
 
       cssRule(),
-      imageRule(),
+      filesRule(),
       handlebarsRule()
     ]
   }

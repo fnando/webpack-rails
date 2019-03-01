@@ -4,6 +4,7 @@ const merge = require("webpack-merge");
 const webpack = require("webpack");
 
 const shared = require("./shared");
+const jsRule = require("./webpack/js_rule");
 const handlebarsRule = require("./webpack/handlebars_rule");
 
 module.exports = merge(shared, {
@@ -20,14 +21,11 @@ module.exports = merge(shared, {
 
   module: {
     rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: [
-          "babel-loader",
-          "eslint-loader?configFile=.eslintrc.test"
-        ]
-      },
+      jsRule({
+        eslint: {
+          configFile: ".eslintrc.test"
+        }
+      }),
 
       {
         test: /\.s?css$/,
@@ -35,7 +33,7 @@ module.exports = merge(shared, {
       },
 
       {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ico)$/,
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|ico|webm|mp4)$/,
         use: "null-loader"
       },
 

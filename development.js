@@ -7,8 +7,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const shared = require("./shared");
 const handlebarsRule = require("./webpack/handlebars_rule");
+const jsRule = require("./webpack/js_rule");
 const cssRule = require("./webpack/css_rule");
-const imageRule = require("./webpack/image_rule");
+const filesRule = require("./webpack/files_rule");
 
 module.exports = merge(shared, {
   mode: "development",
@@ -29,17 +30,9 @@ module.exports = merge(shared, {
 
   module: {
     rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: [
-          "babel-loader",
-          "eslint-loader?configFile=.eslintrc.development"
-        ]
-      },
-
+      jsRule({eslint: {configFile: ".eslintrc.development"}}),
       cssRule(),
-      imageRule(),
+      filesRule(),
       handlebarsRule()
     ]
   }
